@@ -1,7 +1,13 @@
 import type { Metadata, Viewport } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { MobileNav } from "@/components/mobile-nav";
 import { PWAInit } from "@/components/pwa-init";
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   title: "Hybrid Training Tracker",
@@ -34,7 +40,7 @@ export default function RootLayout({
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
-      <body className="antialiased pb-16 md:pb-0">
+      <body className={`${jetbrainsMono.variable} style-lyra antialiased pb-16 md:pb-0 font-mono`}>
         <PWAInit />
         <MobileNav />
         <main className="min-h-screen md:ml-64">{children}</main>
