@@ -34,10 +34,10 @@ export default function RootLayout({
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
-      <body className="antialiased pb-16">
+      <body className="antialiased pb-16 md:pb-0">
         <PWAInit />
-        <main className="min-h-screen">{children}</main>
         <MobileNav />
+        <main className="min-h-screen md:ml-64">{children}</main>
       </body>
     </html>
   );

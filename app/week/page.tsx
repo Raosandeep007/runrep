@@ -33,10 +33,10 @@ export default function WeekPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-2xl">
+    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-6xl">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-2">Weekly Plan</h1>
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">Weekly Plan</h1>
         <p className="text-muted-foreground">
           Week {appState.weeklyProgression.weekNumber}
           {appState.weeklyProgression.isDeloadWeek && (
@@ -48,7 +48,7 @@ export default function WeekPage() {
       </div>
 
       {/* Weekly Overview */}
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
         {TRAINING_PLAN.map((workout, idx) => {
           const isToday = idx === today;
           const completion = getDayCompletion(workout.day);

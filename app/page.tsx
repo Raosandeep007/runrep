@@ -25,10 +25,10 @@ export default function DashboardPage() {
   const isDeloadWeek = appState.weeklyProgression.isDeloadWeek;
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-2xl">
+    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-5xl">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">Dashboard</h1>
         <p className="text-muted-foreground">
           Week {appState.weeklyProgression.weekNumber}
           {isDeloadWeek && (
@@ -102,8 +102,8 @@ export default function DashboardPage() {
 
       {/* Quick Actions */}
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold">Quick Actions</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <h2 className="text-xl md:text-2xl font-semibold">Quick Actions</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Link href="/week">
             <Card className="cursor-pointer hover:bg-accent transition-colors">
               <CardContent className="p-4 flex flex-col items-center text-center">

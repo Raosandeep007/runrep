@@ -34,7 +34,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-2xl">
+    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-4xl">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">

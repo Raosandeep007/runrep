@@ -72,10 +72,10 @@ export default function ProgressPage() {
   const currentWeek = appState.weeklyProgression.weekNumber;
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-2xl">
+    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-6xl">
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-2">Progress</h1>
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">Progress</h1>
         <p className="text-muted-foreground">Track your training journey</p>
       </div>
 
@@ -123,7 +123,7 @@ export default function ProgressPage() {
             </CardHeader>
             <CardContent>
               {strengthData.length > 0 ? (
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={400}>
                   <LineChart data={strengthData}>
                     <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                     <XAxis
@@ -178,7 +178,7 @@ export default function ProgressPage() {
             </CardHeader>
             <CardContent>
               {runningVolumeData.length > 0 ? (
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={400}>
                   <BarChart data={runningVolumeData}>
                     <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                     <XAxis
@@ -231,7 +231,7 @@ export default function ProgressPage() {
             </CardHeader>
             <CardContent>
               {paceTrendData.length > 0 ? (
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={400}>
                   <LineChart data={paceTrendData}>
                     <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
                     <XAxis

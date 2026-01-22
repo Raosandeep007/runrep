@@ -80,7 +80,7 @@ export default function WorkoutDetailPage() {
   const progressPercent = (completedExercises.size / totalExercises) * 100;
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-2xl pb-24">
+    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-4xl pb-24 md:pb-8">
       {/* Header */}
       <div className="mb-6">
         <Link href="/week">
@@ -251,8 +251,8 @@ export default function WorkoutDetailPage() {
       </div>
 
       {/* Sticky Complete Button */}
-      <div className="fixed bottom-16 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t">
-        <div className="container mx-auto max-w-2xl">
+      <div className="fixed bottom-16 md:bottom-0 left-0 md:left-64 right-0 p-4 bg-background/95 backdrop-blur border-t">
+        <div className="container mx-auto max-w-2xl lg:max-w-4xl">
           <Button
             className="w-full h-12 text-base"
             size="lg"
