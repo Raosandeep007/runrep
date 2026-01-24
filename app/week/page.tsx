@@ -1,11 +1,21 @@
-'use client';
+"use client";
 
-import { TRAINING_PLAN, getAllDaysInOrder } from '@/data/workouts';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { useAppState } from '@/lib/hooks/use-app-state';
-import { CheckCircle2, Circle, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { TRAINING_PLAN, getAllDaysInOrder } from "@/data/workouts";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { useAppState } from "@/lib/hooks/use-app-state";
+import {
+  RiCheckboxCircleLine,
+  RiCircleLine,
+  RiArrowRightLine,
+} from "@remixicon/react";
+import Link from "next/link";
 
 export default function WeekPage() {
   const { appState } = useAppState();
@@ -14,21 +24,21 @@ export default function WeekPage() {
 
   const getTypeIcon = (day: string): string => {
     const workout = TRAINING_PLAN.find((w) => w.day === day);
-    if (!workout) return '📅';
+    if (!workout) return "📅";
 
     const firstSection = workout.sections[0];
-    if (!firstSection || !firstSection.exercises.length) return '📅';
+    if (!firstSection || !firstSection.exercises.length) return "📅";
 
     const firstType = firstSection.exercises[0].type;
-    if (firstType === 'cardio') return '🏃';
-    if (firstType === 'strength') return '💪';
-    return '🏋️';
+    if (firstType === "cardio") return "🏃";
+    if (firstType === "strength") return "💪";
+    return "🏋️";
   };
 
   const getDayCompletion = (day: string) => {
-    const todayDate = new Date().toISOString().split('T')[0];
+    const todayDate = new Date().toISOString().split("T")[0];
     return appState.workoutCompletions.find(
-      (c) => c.day === day && c.date.startsWith(todayDate)
+      (c) => c.day === day && c.date.startsWith(todayDate),
     );
   };
 
@@ -54,14 +64,14 @@ export default function WeekPage() {
           const completion = getDayCompletion(workout.day);
           const totalExercises = workout.sections.reduce(
             (acc, section) => acc + section.exercises.length,
-            0
+            0,
           );
 
           return (
             <Link key={workout.day} href={`/workout/${workout.day}`}>
               <Card
                 className={`cursor-pointer transition-all hover:shadow-md ${
-                  isToday ? 'border-primary border-2' : ''
+                  isToday ? "border-primary border-2" : ""
                 }`}
               >
                 <CardContent className="p-4">
@@ -73,7 +83,9 @@ export default function WeekPage() {
                       {/* Workout Info */}
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold capitalize">{workout.day}</h3>
+                          <h3 className="font-semibold capitalize">
+                            {workout.day}
+                          </h3>
                           {isToday && (
                             <Badge variant="default" className="text-xs">
                               Today
@@ -93,11 +105,11 @@ export default function WeekPage() {
                     {/* Status */}
                     <div className="flex items-center gap-2">
                       {completion?.completed ? (
-                        <CheckCircle2 className="h-6 w-6 text-primary" />
+                        <RiCheckboxCircleLine className="h-6 w-6 text-primary" />
                       ) : (
-                        <Circle className="h-6 w-6 text-muted-foreground" />
+                        <RiCircleLine className="h-6 w-6 text-muted-foreground" />
                       )}
-                      <ArrowRight className="h-5 w-5 text-muted-foreground" />
+                      <RiArrowRightLine className="h-5 w-5 text-muted-foreground" />
                     </div>
                   </div>
                 </CardContent>

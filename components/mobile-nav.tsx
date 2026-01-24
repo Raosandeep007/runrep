@@ -1,15 +1,21 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Home, Calendar, TrendingUp, Settings, Dumbbell } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  RiHomeLine,
+  RiCalendarLine,
+  RiStockLine,
+  RiSettingsLine,
+  RiBoxingLine,
+} from "@remixicon/react";
+import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: '/', label: 'Dashboard', icon: Home },
-  { href: '/week', label: 'Week', icon: Calendar },
-  { href: '/progress', label: 'Progress', icon: TrendingUp },
-  { href: '/settings', label: 'Settings', icon: Settings },
+  { href: "/", label: "Dashboard", icon: RiHomeLine },
+  { href: "/week", label: "Week", icon: RiCalendarLine },
+  { href: "/progress", label: "Progress", icon: RiStockLine },
+  { href: "/settings", label: "Settings", icon: RiSettingsLine },
 ];
 
 export function MobileNav() {
@@ -22,22 +28,25 @@ export function MobileNav() {
         <div className="flex h-16 items-center justify-around">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href ||
-              (item.href !== '/' && pathname.startsWith(item.href));
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(item.href));
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex flex-col items-center justify-center gap-1 px-3 py-2 text-xs transition-colors',
-                  'min-w-[64px] min-h-[56px]',
+                  "flex flex-col items-center justify-center gap-1 px-3 py-2 text-xs transition-colors",
+                  "min-w-[64px] min-h-[56px]",
                   isActive
-                    ? 'text-primary'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
-                <Icon className={cn('h-5 w-5', isActive && 'fill-primary/20')} />
+                <Icon
+                  className={cn("h-5 w-5", isActive && "fill-primary/20")}
+                />
                 <span className="font-medium">{item.label}</span>
               </Link>
             );
@@ -52,7 +61,7 @@ export function MobileNav() {
           <div className="p-6 border-b">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Dumbbell className="h-6 w-6 text-primary" />
+                <RiBoxingLine className="h-6 w-6 text-primary" />
               </div>
               <div>
                 <h2 className="font-bold text-lg">Fitness Tracker</h2>
@@ -66,18 +75,19 @@ export function MobileNav() {
             <div className="space-y-2">
               {navItems.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname === item.href ||
-                  (item.href !== '/' && pathname.startsWith(item.href));
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href));
 
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
+                      "flex items-center gap-3 px-4 py-3 rounded-lg transition-all",
                       isActive
-                        ? 'bg-primary/10 text-primary font-medium'
-                        : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "text-muted-foreground hover:bg-accent hover:text-foreground",
                     )}
                   >
                     <Icon className="h-5 w-5" />

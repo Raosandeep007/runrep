@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   // State to store our value
@@ -26,21 +26,22 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     (value: T | ((val: T) => T)) => {
       try {
         // Allow value to be a function so we have same API as useState
-        const valueToStore = value instanceof Function ? value(storedValue) : value;
+        const valueToStore =
+          value instanceof Function ? value(storedValue) : value;
         setStoredValue(valueToStore);
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
 
         // Dispatch custom event for cross-tab synchronization
         window.dispatchEvent(
-          new CustomEvent('local-storage', {
+          new CustomEvent("local-storage", {
             detail: { key, value: valueToStore },
-          })
+          }),
         );
       } catch (error) {
         console.error(`Error saving ${key} to localStorage:`, error);
       }
     },
-    [key, storedValue]
+    [key, storedValue],
   );
 
   // Listen for changes from other tabs
@@ -62,12 +63,12 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       }
     };
 
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('local-storage', handleCustomEvent);
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("local-storage", handleCustomEvent);
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('local-storage', handleCustomEvent);
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("local-storage", handleCustomEvent);
     };
   }, [key]);
 

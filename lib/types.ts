@@ -1,4 +1,4 @@
-import { WorkoutDay } from '@/data/workouts';
+import { WorkoutDay } from "@/data/workouts";
 
 // Exercise log entry
 export interface ExerciseLog {

@@ -1,15 +1,29 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useAppState } from '@/lib/hooks/use-app-state';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Switch } from '@/components/ui/switch';
-import { Badge } from '@/components/ui/badge';
-import { Settings2, Trash2, TrendingDown, RefreshCw, Download, Info } from 'lucide-react';
+import { useState } from "react";
+import { useAppState } from "@/lib/hooks/use-app-state";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
+import {
+  RiDeleteBin2Line,
+  RiArrowDownLine,
+  RiRefreshLine,
+  RiSettings2Line,
+  RiDownloadLine,
+  RiInformationLine,
+} from "@remixicon/react";
 
 export default function SettingsPage() {
-  const { appState, toggleDeloadWeek, incrementWeek, resetAppState } = useAppState();
+  const { appState, toggleDeloadWeek, incrementWeek, resetAppState } =
+    useAppState();
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleReset = () => {
@@ -24,11 +38,11 @@ export default function SettingsPage() {
 
   const exportData = () => {
     const dataStr = JSON.stringify(appState, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const dataBlob = new Blob([dataStr], { type: "application/json" });
     const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = `fitness-tracker-backup-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `fitness-tracker-backup-${new Date().toISOString().split("T")[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -38,31 +52,41 @@ export default function SettingsPage() {
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
-          <Settings2 className="h-8 w-8" />
+          <RiSettings2Line className="h-8 w-8" />
           Settings
         </h1>
-        <p className="text-muted-foreground">Manage your training preferences</p>
+        <p className="text-muted-foreground">
+          Manage your training preferences
+        </p>
       </div>
 
-      {/* App Info */}
+      {/* App Information */}
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Info className="h-5 w-5" />
+            <RiInformationLine className="h-5 w-5" />
             App Information
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-sm text-muted-foreground">Current Week</span>
-            <Badge variant="outline">{appState.weeklyProgression.weekNumber}</Badge>
+            <Badge variant="outline">
+              {appState.weeklyProgression.weekNumber}
+            </Badge>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Total Workouts</span>
-            <Badge variant="outline">{appState.workoutCompletions.length}</Badge>
+            <span className="text-sm text-muted-foreground">
+              Total Workouts
+            </span>
+            <Badge variant="outline">
+              {appState.workoutCompletions.length}
+            </Badge>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Total Exercises</span>
+            <span className="text-sm text-muted-foreground">
+              Total Exercises
+            </span>
             <Badge variant="outline">{appState.exerciseLogs.length}</Badge>
           </div>
           <div className="flex justify-between items-center">
@@ -84,10 +108,12 @@ export default function SettingsPage() {
           {/* Deload Week Toggle */}
           <div className="flex items-center justify-between py-3 border-b">
             <div className="flex items-center gap-3">
-              <TrendingDown className="h-5 w-5 text-muted-foreground" />
+              <RiArrowDownLine className="h-5 w-5 text-muted-foreground" />
               <div>
                 <p className="font-medium">Deload Week</p>
-                <p className="text-sm text-muted-foreground">Reduce volume by 40-50%</p>
+                <p className="text-sm text-muted-foreground">
+                  Reduce volume by 40-50%
+                </p>
               </div>
             </div>
             <Switch
@@ -99,7 +125,7 @@ export default function SettingsPage() {
           {/* Increment Week */}
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center gap-3">
-              <RefreshCw className="h-5 w-5 text-muted-foreground" />
+              <RiRefreshLine className="h-5 w-5 text-muted-foreground" />
               <div>
                 <p className="font-medium">Start Next Week</p>
                 <p className="text-sm text-muted-foreground">
@@ -127,22 +153,23 @@ export default function SettingsPage() {
             className="w-full justify-start"
             onClick={exportData}
           >
-            <Download className="mr-2 h-4 w-4" />
+            <RiDownloadLine className="mr-2 h-4 w-4" />
             Export Data (JSON)
           </Button>
 
           {/* Reset Data */}
           <Button
-            variant={showConfirm ? 'destructive' : 'outline'}
+            variant={showConfirm ? "destructive" : "outline"}
             className="w-full justify-start"
             onClick={handleReset}
           >
-            <Trash2 className="mr-2 h-4 w-4" />
-            {showConfirm ? 'Click again to confirm' : 'Reset All Data'}
+            <RiDeleteBin2Line className="mr-2 h-4 w-4" />
+            {showConfirm ? "Click again to confirm" : "Reset All Data"}
           </Button>
           {showConfirm && (
             <p className="text-xs text-destructive">
-              Warning: This will permanently delete all your workout logs and progress!
+              Warning: This will permanently delete all your workout logs and
+              progress!
             </p>
           )}
         </CardContent>
@@ -157,8 +184,8 @@ export default function SettingsPage() {
           <div>
             <h4 className="font-semibold mb-2">Advanced Hybrid Training</h4>
             <p className="text-sm text-muted-foreground">
-              This program combines maximal strength training with aerobic development. Designed for
-              intermediate to advanced athletes.
+              This program combines maximal strength training with aerobic
+              development. Designed for intermediate to advanced athletes.
             </p>
           </div>
           <div>
@@ -183,7 +210,8 @@ export default function SettingsPage() {
       {/* PWA Info */}
       <div className="mt-6 p-4 rounded-lg bg-muted/50 text-center">
         <p className="text-sm text-muted-foreground">
-          This app works offline. Add it to your home screen for the best experience.
+          This app works offline. Add it to your home screen for the best
+          experience.
         </p>
       </div>
     </div>

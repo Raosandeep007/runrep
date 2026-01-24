@@ -1,6 +1,6 @@
 {
-  "name": "Hybrid Training Tracker",
-  "short_name": "FitTracker",
+  "name": "RunRep",
+  "short_name": "RunRep",
   "description": "Advanced Hybrid Training Plan - Strength + Running tracker",
   "start_url": "/",
   "display": "standalone",
