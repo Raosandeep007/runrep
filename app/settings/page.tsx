@@ -48,10 +48,10 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-4xl">
+    <div className="container mx-auto max-w-2xl px-4 py-6 md:py-8 lg:max-w-4xl">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
+        <h1 className="mb-2 flex items-center gap-2 text-3xl font-bold">
           <RiSettings2Line className="h-8 w-8" />
           Settings
         </h1>
@@ -69,28 +69,28 @@ export default function SettingsPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Current Week</span>
+          <div className="flex items-center justify-between">
+            <span className="text-muted-foreground text-sm">Current Week</span>
             <Badge variant="outline">
               {appState.weeklyProgression.weekNumber}
             </Badge>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">
+          <div className="flex items-center justify-between">
+            <span className="text-muted-foreground text-sm">
               Total Workouts
             </span>
             <Badge variant="outline">
               {appState.workoutCompletions.length}
             </Badge>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">
+          <div className="flex items-center justify-between">
+            <span className="text-muted-foreground text-sm">
               Total Exercises
             </span>
             <Badge variant="outline">{appState.exerciseLogs.length}</Badge>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Last Sync</span>
+          <div className="flex items-center justify-between">
+            <span className="text-muted-foreground text-sm">Last Sync</span>
             <span className="text-sm">
               {new Date(appState.lastSync).toLocaleDateString()}
             </span>
@@ -106,12 +106,12 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Deload Week Toggle */}
-          <div className="flex items-center justify-between py-3 border-b">
+          <div className="flex items-center justify-between border-b py-3">
             <div className="flex items-center gap-3">
-              <RiArrowDownLine className="h-5 w-5 text-muted-foreground" />
+              <RiArrowDownLine className="text-muted-foreground h-5 w-5" />
               <div>
                 <p className="font-medium">Deload Week</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Reduce volume by 40-50%
                 </p>
               </div>
@@ -125,10 +125,10 @@ export default function SettingsPage() {
           {/* Increment Week */}
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center gap-3">
-              <RiRefreshLine className="h-5 w-5 text-muted-foreground" />
+              <RiRefreshLine className="text-muted-foreground h-5 w-5" />
               <div>
                 <p className="font-medium">Start Next Week</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Move to week {appState.weeklyProgression.weekNumber + 1}
                 </p>
               </div>
@@ -167,7 +167,7 @@ export default function SettingsPage() {
             {showConfirm ? "Click again to confirm" : "Reset All Data"}
           </Button>
           {showConfirm && (
-            <p className="text-xs text-destructive">
+            <p className="text-destructive text-xs">
               Warning: This will permanently delete all your workout logs and
               progress!
             </p>
@@ -182,23 +182,23 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-semibold mb-2">Advanced Hybrid Training</h4>
-            <p className="text-sm text-muted-foreground">
+            <h4 className="mb-2 font-semibold">Advanced Hybrid Training</h4>
+            <p className="text-muted-foreground text-sm">
               This program combines maximal strength training with aerobic
               development. Designed for intermediate to advanced athletes.
             </p>
           </div>
           <div>
-            <h4 className="font-semibold mb-2">Weekly Structure</h4>
-            <ul className="space-y-1 text-sm text-muted-foreground">
+            <h4 className="mb-2 font-semibold">Weekly Structure</h4>
+            <ul className="text-muted-foreground space-y-1 text-sm">
               <li>• 3 strength sessions (Lower, Pull, Push)</li>
               <li>• 3 running sessions (Easy, Zone 2, Speed)</li>
               <li>• 1 flexible recovery/arm day</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2">Progression Rules</h4>
-            <ul className="space-y-1 text-sm text-muted-foreground">
+            <h4 className="mb-2 font-semibold">Progression Rules</h4>
+            <ul className="text-muted-foreground space-y-1 text-sm">
               <li>• Strength: +2.5kg every 1-2 weeks</li>
               <li>• Running: +10% volume max per week</li>
               <li>• Deload every 4th week</li>
@@ -208,8 +208,8 @@ export default function SettingsPage() {
       </Card>
 
       {/* PWA Info */}
-      <div className="mt-6 p-4 rounded-lg bg-muted/50 text-center">
-        <p className="text-sm text-muted-foreground">
+      <div className="bg-muted/50 mt-6 rounded-lg p-4 text-center">
+        <p className="text-muted-foreground text-sm">
           This app works offline. Add it to your home screen for the best
           experience.
         </p>

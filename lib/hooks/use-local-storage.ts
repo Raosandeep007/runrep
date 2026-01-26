@@ -35,13 +35,13 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
         window.dispatchEvent(
           new CustomEvent("local-storage", {
             detail: { key, value: valueToStore },
-          }),
+          })
         );
       } catch (error) {
         console.error(`Error saving ${key} to localStorage:`, error);
       }
     },
-    [key, storedValue],
+    [key, storedValue]
   );
 
   // Listen for changes from other tabs

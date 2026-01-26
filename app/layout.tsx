@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { MobileNav } from "@/components/mobile-nav";
 import { PWAInit } from "@/components/pwa-init";
+import { PageLoader } from "@/components/page-loader";
 import { JetBrains_Mono } from "next/font/google";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#5B21B6",
+  themeColor: "#FA7A17",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -40,7 +41,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
-      <body className="antialiased pb-16 md:pb-0">
+      <body className="pb-16 antialiased md:pb-0">
+        <PageLoader />
         <PWAInit />
         <MobileNav />
         <main className="min-h-screen md:ml-64">{children}</main>

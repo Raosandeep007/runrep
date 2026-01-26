@@ -22,7 +22,7 @@ self.addEventListener("install", (event) => {
       return cache.addAll(STATIC_ASSETS).catch((err) => {
         console.error("[Service Worker] Cache add failed:", err);
       });
-    }),
+    })
   );
   self.skipWaiting();
 });
@@ -38,9 +38,9 @@ self.addEventListener("activate", (event) => {
             console.log("[Service Worker] Removing old cache:", key);
             return caches.delete(key);
           }
-        }),
+        })
       );
-    }),
+    })
   );
   return self.clients.claim();
 });
@@ -92,7 +92,7 @@ self.addEventListener("fetch", (event) => {
             return caches.match("/");
           }
         });
-    }),
+    })
   );
 });
 

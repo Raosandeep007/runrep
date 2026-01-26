@@ -75,6 +75,22 @@
       transform: translateY(0);
     }
   }
+
+  @keyframes bounce-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(-10px);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 2s infinite;
+  }
 }
 
 /* 
@@ -212,6 +228,12 @@
   --component-active-bg: var(--secondary);
   --component-line-inactive-color: var(--muted-foreground);
   --component-active-color-default: var(--accent-foreground);
+}
+
+/* View Transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
 }
 
 @layer base {

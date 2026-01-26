@@ -43,7 +43,7 @@ export function MobileNav() {
   return (
     <>
       {/* Mobile Bottom Navigation - Hidden on Desktop */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <nav className="bg-background/95 supports-[backdrop-filter]:bg-background/60 fixed right-0 bottom-0 left-0 z-50 border-t backdrop-blur md:hidden">
         <div className="flex h-20 items-start justify-around">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -60,11 +60,11 @@ export function MobileNav() {
                 href={item.href}
                 className={cn(
                   "flex flex-col items-center justify-center gap-1 px-3 text-xs transition-colors",
-                  "min-w-[64px] min-h-[56px]",
+                  "min-h-[56px] min-w-[64px]",
                   {
                     "text-primary": isActive,
                     "text-muted-foreground hover:text-foreground": !isActive,
-                  },
+                  }
                 )}
               >
                 <NavIcon
@@ -80,17 +80,17 @@ export function MobileNav() {
       </nav>
 
       {/* Desktop Sidebar - Hidden on Mobile */}
-      <aside className="hidden md:block fixed left-0 top-0 bottom-0 w-64 border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
-        <div className="flex flex-col h-full">
+      <aside className="bg-background/95 supports-[backdrop-filter]:bg-background/60 fixed top-0 bottom-0 left-0 z-50 hidden w-64 border-r backdrop-blur md:block">
+        <div className="flex h-full flex-col">
           {/* Logo/Header */}
-          <div className="p-6 border-b">
+          <div className="border-b p-6">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <RiBoxingLine className="h-6 w-6 text-primary" />
+              <div className="bg-primary/10 flex h-10 w-10 items-center justify-center rounded-lg">
+                <RiBoxingLine className="text-primary h-6 w-6" />
               </div>
               <div>
-                <h2 className="font-bold text-lg">Fitness Tracker</h2>
-                <p className="text-xs text-muted-foreground">Hybrid Training</p>
+                <h2 className="text-lg font-bold">Fitness Tracker</h2>
+                <p className="text-muted-foreground text-xs">Hybrid Training</p>
               </div>
             </div>
           </div>
@@ -111,12 +111,12 @@ export function MobileNav() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-3 px-4 py-3 rounded-lg transition-all",
+                      "flex items-center gap-3 rounded-lg px-4 py-3 transition-all",
                       {
                         "bg-primary/10 text-primary font-medium": isActive,
                         "text-muted-foreground hover:bg-accent hover:text-foreground":
                           !isActive,
-                      },
+                      }
                     )}
                   >
                     <NavIcon className="h-5 w-5" />
@@ -128,7 +128,7 @@ export function MobileNav() {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t text-xs text-muted-foreground">
+          <div className="text-muted-foreground border-t p-4 text-xs">
             <p>Advanced Hybrid Training</p>
             <p>Strength + Cardio Program</p>
           </div>
