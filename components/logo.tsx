@@ -1,6 +1,8 @@
 import React, { SVGProps } from "react";
 
-type Props = SVGProps<SVGSVGElement>;
+type Props = SVGProps<SVGSVGElement> & {
+  animate?: boolean;
+};
 
 export default function Logo(props: Props) {
   return (

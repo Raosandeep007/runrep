@@ -50,7 +50,8 @@ export function MobileNav() {
             const FillIcon = item.fillicon;
             const isActive =
               pathname === item.href ||
-              (item.href !== "/" && pathname.startsWith(item.href));
+              (item.href !== "/" && pathname.startsWith(item.href)) ||
+              (item.href === "/week" && pathname.startsWith("/workout"));
 
             const NavIcon = isActive ? FillIcon : Icon;
 
@@ -101,7 +102,8 @@ export function MobileNav() {
                 const FillIcon = item.fillicon;
                 const isActive =
                   pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(item.href));
+                  (item.href !== "/" && pathname.startsWith(item.href)) ||
+                  (item.href === "/week" && pathname.startsWith("/workout"));
                 const NavIcon = isActive ? FillIcon : Icon;
 
                 return (
