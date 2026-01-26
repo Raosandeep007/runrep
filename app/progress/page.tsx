@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useAppState } from '@/lib/hooks/use-app-state';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
+import { useAppState } from "@/lib/hooks/use-app-state";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
 import {
   LineChart,
   Line,
@@ -15,9 +15,9 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
-} from 'recharts';
-import { TrendingUp, Activity, Award } from 'lucide-react';
-import { useMemo } from 'react';
+} from "recharts";
+import { RiStockLine, RiPulseLine, RiAwardLine } from "@remixicon/react";
+import { useMemo } from "react";
 
 export default function ProgressPage() {
   const { appState, getAllStrengthLogs, getAllRunningLogs } = useAppState();
@@ -29,7 +29,10 @@ export default function ProgressPage() {
       .slice(0, 20)
       .reverse()
       .map((log) => ({
-        date: new Date(log.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        date: new Date(log.date).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        }),
         weight: log.weight,
         reps: log.reps,
       }));
@@ -42,10 +45,13 @@ export default function ProgressPage() {
 
     logs.forEach((log) => {
       const date = new Date(log.date);
-      const weekKey = `Week ${Math.floor(
-        (date.getTime() - new Date(appState.weeklyProgression.startDate).getTime()) /
-          (7 * 24 * 60 * 60 * 1000)
-      ) + 1}`;
+      const weekKey = `Week ${
+        Math.floor(
+          (date.getTime() -
+            new Date(appState.weeklyProgression.startDate).getTime()) /
+            (7 * 24 * 60 * 60 * 1000),
+        ) + 1
+      }`;
       weeklyData[weekKey] = (weeklyData[weekKey] || 0) + (log.distance || 0);
     });
 
@@ -62,7 +68,10 @@ export default function ProgressPage() {
       .slice(0, 15)
       .reverse()
       .map((log) => ({
-        date: new Date(log.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        date: new Date(log.date).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        }),
         pace: log.pace,
       }));
   }, [getAllRunningLogs]);
@@ -83,21 +92,21 @@ export default function ProgressPage() {
       <div className="grid grid-cols-3 gap-4 mb-6">
         <Card>
           <CardContent className="p-4 text-center">
-            <Award className="h-6 w-6 mx-auto mb-2 text-primary" />
+            <RiAwardLine className="h-6 w-6 mx-auto mb-2 text-primary" />
             <p className="text-2xl font-bold">{totalWorkouts}</p>
             <p className="text-xs text-muted-foreground">Workouts</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
-            <Activity className="h-6 w-6 mx-auto mb-2 text-primary" />
+            <RiPulseLine className="h-6 w-6 mx-auto mb-2 text-primary" />
             <p className="text-2xl font-bold">{totalExercises}</p>
             <p className="text-xs text-muted-foreground">Exercises</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
-            <TrendingUp className="h-6 w-6 mx-auto mb-2 text-primary" />
+            <RiStockLine className="h-6 w-6 mx-auto mb-2 text-primary" />
             <p className="text-2xl font-bold">{currentWeek}</p>
             <p className="text-xs text-muted-foreground">Weeks</p>
           </CardContent>
@@ -117,7 +126,7 @@ export default function ProgressPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5" />
+                <RiStockLine className="h-5 w-5" />
                 Strength Progression
               </CardTitle>
             </CardHeader>
@@ -125,22 +134,29 @@ export default function ProgressPage() {
               {strengthData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={400}>
                   <LineChart data={strengthData}>
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      className="stroke-muted"
+                    />
                     <XAxis
                       dataKey="date"
                       className="text-xs"
-                      tick={{ fill: 'hsl(var(--muted-foreground))' }}
+                      tick={{ fill: "hsl(var(--muted-foreground))" }}
                     />
                     <YAxis
                       className="text-xs"
-                      tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      label={{ value: 'Weight (kg)', angle: -90, position: 'insideLeft' }}
+                      tick={{ fill: "hsl(var(--muted-foreground))" }}
+                      label={{
+                        value: "Weight (kg)",
+                        angle: -90,
+                        position: "insideLeft",
+                      }}
                     />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: 'hsl(var(--card))',
-                        border: '1px solid hsl(var(--border))',
-                        borderRadius: '8px',
+                        backgroundColor: "hsl(var(--card))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "8px",
                       }}
                     />
                     <Legend />
@@ -149,7 +165,7 @@ export default function ProgressPage() {
                       dataKey="weight"
                       stroke="hsl(var(--chart-1))"
                       strokeWidth={2}
-                      dot={{ fill: 'hsl(var(--chart-1))' }}
+                      dot={{ fill: "hsl(var(--chart-1))" }}
                       name="Weight"
                     />
                   </LineChart>
@@ -157,9 +173,11 @@ export default function ProgressPage() {
               ) : (
                 <div className="h-[300px] flex items-center justify-center text-muted-foreground">
                   <div className="text-center">
-                    <Activity className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                    <RiPulseLine className="h-12 w-12 mx-auto mb-2 opacity-50" />
                     <p>No strength data logged yet</p>
-                    <p className="text-sm">Start logging weights to see your progress</p>
+                    <p className="text-sm">
+                      Start logging weights to see your progress
+                    </p>
                   </div>
                 </div>
               )}
@@ -172,7 +190,7 @@ export default function ProgressPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Activity className="h-5 w-5" />
+                <RiPulseLine className="h-5 w-5" />
                 Weekly Running Volume
               </CardTitle>
             </CardHeader>
@@ -180,22 +198,29 @@ export default function ProgressPage() {
               {runningVolumeData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={400}>
                   <BarChart data={runningVolumeData}>
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      className="stroke-muted"
+                    />
                     <XAxis
                       dataKey="week"
                       className="text-xs"
-                      tick={{ fill: 'hsl(var(--muted-foreground))' }}
+                      tick={{ fill: "hsl(var(--muted-foreground))" }}
                     />
                     <YAxis
                       className="text-xs"
-                      tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      label={{ value: 'Distance (km)', angle: -90, position: 'insideLeft' }}
+                      tick={{ fill: "hsl(var(--muted-foreground))" }}
+                      label={{
+                        value: "Distance (km)",
+                        angle: -90,
+                        position: "insideLeft",
+                      }}
                     />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: 'hsl(var(--card))',
-                        border: '1px solid hsl(var(--border))',
-                        borderRadius: '8px',
+                        backgroundColor: "hsl(var(--card))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "8px",
                       }}
                     />
                     <Legend />
@@ -210,9 +235,11 @@ export default function ProgressPage() {
               ) : (
                 <div className="h-[300px] flex items-center justify-center text-muted-foreground">
                   <div className="text-center">
-                    <Activity className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                    <RiPulseLine className="h-12 w-12 mx-auto mb-2 opacity-50" />
                     <p>No running data logged yet</p>
-                    <p className="text-sm">Complete runs to track your volume</p>
+                    <p className="text-sm">
+                      Complete runs to track your volume
+                    </p>
                   </div>
                 </div>
               )}
@@ -225,7 +252,7 @@ export default function ProgressPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5" />
+                <RiStockLine className="h-5 w-5" />
                 Pace Trend
               </CardTitle>
             </CardHeader>
@@ -233,23 +260,30 @@ export default function ProgressPage() {
               {paceTrendData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={400}>
                   <LineChart data={paceTrendData}>
-                    <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      className="stroke-muted"
+                    />
                     <XAxis
                       dataKey="date"
                       className="text-xs"
-                      tick={{ fill: 'hsl(var(--muted-foreground))' }}
+                      tick={{ fill: "hsl(var(--muted-foreground))" }}
                     />
                     <YAxis
                       className="text-xs"
-                      tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      label={{ value: 'Pace (min/km)', angle: -90, position: 'insideLeft' }}
+                      tick={{ fill: "hsl(var(--muted-foreground))" }}
+                      label={{
+                        value: "Pace (min/km)",
+                        angle: -90,
+                        position: "insideLeft",
+                      }}
                       reversed
                     />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: 'hsl(var(--card))',
-                        border: '1px solid hsl(var(--border))',
-                        borderRadius: '8px',
+                        backgroundColor: "hsl(var(--card))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "8px",
                       }}
                     />
                     <Legend />
@@ -258,7 +292,7 @@ export default function ProgressPage() {
                       dataKey="pace"
                       stroke="hsl(var(--chart-3))"
                       strokeWidth={2}
-                      dot={{ fill: 'hsl(var(--chart-3))' }}
+                      dot={{ fill: "hsl(var(--chart-3))" }}
                       name="Pace"
                     />
                   </LineChart>
@@ -266,9 +300,11 @@ export default function ProgressPage() {
               ) : (
                 <div className="h-[300px] flex items-center justify-center text-muted-foreground">
                   <div className="text-center">
-                    <Activity className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                    <RiPulseLine className="h-12 w-12 mx-auto mb-2 opacity-50" />
                     <p>No pace data logged yet</p>
-                    <p className="text-sm">Log your running pace to see trends</p>
+                    <p className="text-sm">
+                      Log your running pace to see trends
+                    </p>
                   </div>
                 </div>
               )}
@@ -294,7 +330,9 @@ export default function ProgressPage() {
                     className="flex items-center justify-between py-2 border-b last:border-0"
                   >
                     <div>
-                      <p className="text-sm font-medium">Exercise #{log.exerciseId.slice(-4)}</p>
+                      <p className="text-sm font-medium">
+                        Exercise #{log.exerciseId.slice(-4)}
+                      </p>
                       <p className="text-xs text-muted-foreground">
                         {new Date(log.date).toLocaleDateString()}
                       </p>

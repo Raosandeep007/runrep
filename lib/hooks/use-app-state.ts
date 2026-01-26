@@ -1,21 +1,26 @@
-'use client';
+"use client";
 
-import { useLocalStorage } from './use-local-storage';
-import { AppState, DEFAULT_APP_STATE, ExerciseLog, WorkoutCompletion } from '../types';
-import { WorkoutDay } from '@/data/workouts';
-import { useCallback } from 'react';
+import { useLocalStorage } from "./use-local-storage";
+import {
+  AppState,
+  DEFAULT_APP_STATE,
+  ExerciseLog,
+  WorkoutCompletion,
+} from "../types";
+import { WorkoutDay } from "@/data/workouts";
+import { useCallback } from "react";
 
-const APP_STATE_KEY = 'fitness-app-state';
+const APP_STATE_KEY = "fitness-app-state";
 
 export function useAppState() {
   const [appState, setAppState, isLoading] = useLocalStorage<AppState>(
     APP_STATE_KEY,
-    DEFAULT_APP_STATE
+    DEFAULT_APP_STATE,
   );
 
   // Add exercise log
   const addExerciseLog = useCallback(
-    (log: Omit<ExerciseLog, 'date'>) => {
+    (log: Omit<ExerciseLog, "date">) => {
       const newLog: ExerciseLog = {
         ...log,
         date: new Date().toISOString(),
@@ -26,7 +31,7 @@ export function useAppState() {
         lastSync: new Date().toISOString(),
       }));
     },
-    [setAppState]
+    [setAppState],
   );
 
   // Mark workout as complete
@@ -44,20 +49,20 @@ export function useAppState() {
         lastSync: new Date().toISOString(),
       }));
     },
-    [setAppState]
+    [setAppState],
   );
 
   // Get workout completion for today
   const getTodayCompletion = useCallback(
     (day: WorkoutDay): WorkoutCompletion | null => {
-      const today = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split("T")[0];
       return (
         appState.workoutCompletions.find(
-          (c) => c.day === day && c.date.startsWith(today)
+          (c) => c.day === day && c.date.startsWith(today),
         ) || null
       );
     },
-    [appState.workoutCompletions]
+    [appState.workoutCompletions],
   );
 
   // Get logs for specific exercise
@@ -65,9 +70,11 @@ export function useAppState() {
     (exerciseId: string): ExerciseLog[] => {
       return appState.exerciseLogs
         .filter((log) => log.exerciseId === exerciseId)
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        .sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        );
     },
-    [appState.exerciseLogs]
+    [appState.exerciseLogs],
   );
 
   // Get all strength logs (for charts)

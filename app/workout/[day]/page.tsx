@@ -1,24 +1,33 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { getWorkoutByDay, WorkoutDay } from '@/data/workouts';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { useAppState } from '@/lib/hooks/use-app-state';
-import { ArrowLeft, CheckCircle2, Circle } from 'lucide-react';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { getWorkoutByDay, WorkoutDay } from "@/data/workouts";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { useAppState } from "@/lib/hooks/use-app-state";
+import {
+  RiArrowLeftLine,
+  RiCheckboxCircleLine,
+  RiCircleLine,
+} from "@remixicon/react";
+import Link from "next/link";
 
 export default function WorkoutDetailPage() {
   const params = useParams();
   const router = useRouter();
   const day = params.day as WorkoutDay;
   const workout = getWorkoutByDay(day);
-  const { addExerciseLog, markWorkoutComplete, getTodayCompletion } = useAppState();
-  const [completedExercises, setCompletedExercises] = useState<Set<string>>(new Set());
-  const [exerciseLogs, setExerciseLogs] = useState<Record<string, { weight?: number; reps?: number; duration?: number }>>({});
+  const { addExerciseLog, markWorkoutComplete, getTodayCompletion } =
+    useAppState();
+  const [completedExercises, setCompletedExercises] = useState<Set<string>>(
+    new Set(),
+  );
+  const [exerciseLogs, setExerciseLogs] = useState<
+    Record<string, { weight?: number; reps?: number; duration?: number }>
+  >({});
 
   const completion = workout ? getTodayCompletion(workout.day) : null;
 
@@ -70,12 +79,12 @@ export default function WorkoutDetailPage() {
 
   const handleCompleteWorkout = () => {
     markWorkoutComplete(workout.day, Array.from(completedExercises));
-    router.push('/');
+    router.push("/");
   };
 
   const totalExercises = workout.sections.reduce(
     (acc, section) => acc + section.exercises.length,
-    0
+    0,
   );
   const progressPercent = (completedExercises.size / totalExercises) * 100;
 
@@ -85,7 +94,7 @@ export default function WorkoutDetailPage() {
       <div className="mb-6">
         <Link href="/week">
           <Button variant="ghost" size="sm" className="mb-4">
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <RiArrowLeftLine className="mr-2 h-4 w-4" />
             Back to Week
           </Button>
         </Link>
@@ -118,18 +127,21 @@ export default function WorkoutDetailPage() {
           <div key={sectionIdx}>
             <h2 className="text-xl font-semibold mb-3">{section.title}</h2>
             {section.description && (
-              <p className="text-sm text-muted-foreground mb-3">{section.description}</p>
+              <p className="text-sm text-muted-foreground mb-3">
+                {section.description}
+              </p>
             )}
             <div className="space-y-3">
               {section.exercises.map((exercise) => {
                 const isCompleted = completedExercises.has(exercise.id);
-                const isStrength = exercise.type === 'strength' || exercise.type === 'accessory';
-                const isCardio = exercise.type === 'cardio';
+                const isStrength =
+                  exercise.type === "strength" || exercise.type === "accessory";
+                const isCardio = exercise.type === "cardio";
 
                 return (
                   <Card
                     key={exercise.id}
-                    className={isCompleted ? 'bg-muted/50' : ''}
+                    className={isCompleted ? "bg-muted/50" : ""}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-start gap-3">
@@ -139,9 +151,9 @@ export default function WorkoutDetailPage() {
                           className="mt-1"
                         >
                           {isCompleted ? (
-                            <CheckCircle2 className="h-6 w-6 text-primary" />
+                            <RiCheckboxCircleLine className="h-6 w-6 text-primary" />
                           ) : (
-                            <Circle className="h-6 w-6 text-muted-foreground" />
+                            <RiCircleLine className="h-6 w-6 text-muted-foreground" />
                           )}
                         </button>
 
@@ -150,19 +162,27 @@ export default function WorkoutDetailPage() {
                           <h3 className="font-semibold">{exercise.name}</h3>
                           <div className="flex flex-wrap gap-2 mt-2">
                             {exercise.sets && (
-                              <Badge variant="outline">{exercise.sets} sets</Badge>
+                              <Badge variant="outline">
+                                {exercise.sets} sets
+                              </Badge>
                             )}
                             {exercise.reps && (
-                              <Badge variant="outline">{exercise.reps} reps</Badge>
+                              <Badge variant="outline">
+                                {exercise.reps} reps
+                              </Badge>
                             )}
                             {exercise.weight && (
                               <Badge variant="outline">{exercise.weight}</Badge>
                             )}
                             {exercise.duration && (
-                              <Badge variant="outline">{exercise.duration}</Badge>
+                              <Badge variant="outline">
+                                {exercise.duration}
+                              </Badge>
                             )}
                             {exercise.intensity && (
-                              <Badge variant="secondary">{exercise.intensity}</Badge>
+                              <Badge variant="secondary">
+                                {exercise.intensity}
+                              </Badge>
                             )}
                           </div>
                           {exercise.notes && (
@@ -185,7 +205,9 @@ export default function WorkoutDetailPage() {
                                     type="number"
                                     placeholder="Weight (kg)"
                                     className="h-9 text-sm"
-                                    value={exerciseLogs[exercise.id]?.weight || ''}
+                                    value={
+                                      exerciseLogs[exercise.id]?.weight || ""
+                                    }
                                     onChange={(e) =>
                                       setExerciseLogs((prev) => ({
                                         ...prev,
@@ -200,7 +222,9 @@ export default function WorkoutDetailPage() {
                                     type="number"
                                     placeholder="Reps"
                                     className="h-9 text-sm"
-                                    value={exerciseLogs[exercise.id]?.reps || ''}
+                                    value={
+                                      exerciseLogs[exercise.id]?.reps || ""
+                                    }
                                     onChange={(e) =>
                                       setExerciseLogs((prev) => ({
                                         ...prev,
@@ -218,7 +242,9 @@ export default function WorkoutDetailPage() {
                                   type="number"
                                   placeholder="Duration (min)"
                                   className="h-9 text-sm"
-                                  value={exerciseLogs[exercise.id]?.duration || ''}
+                                  value={
+                                    exerciseLogs[exercise.id]?.duration || ""
+                                  }
                                   onChange={(e) =>
                                     setExerciseLogs((prev) => ({
                                       ...prev,
