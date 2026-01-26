@@ -122,7 +122,7 @@ export default function WorkoutDetailPage() {
       </Card>
 
       {/* Sections */}
-      <div className="space-y-6">
+      <div className="space-y-6 pb-0 md:pb-20 lg:pb-20">
         {workout.sections.map((section, sectionIdx) => (
           <div key={sectionIdx}>
             <h2 className="mb-3 text-xl font-semibold">{section.title}</h2>
