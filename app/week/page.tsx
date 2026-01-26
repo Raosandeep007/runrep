@@ -38,15 +38,15 @@ export default function WeekPage() {
   const getDayCompletion = (day: string) => {
     const todayDate = new Date().toISOString().split("T")[0];
     return appState.workoutCompletions.find(
-      (c) => c.day === day && c.date.startsWith(todayDate),
+      (c) => c.day === day && c.date.startsWith(todayDate)
     );
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-6xl">
+    <div className="container mx-auto max-w-2xl px-4 py-6 md:py-8 lg:max-w-6xl">
       {/* Header */}
       <div className="mb-6 md:mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">Weekly Plan</h1>
+        <h1 className="mb-2 text-3xl font-bold md:text-4xl">Weekly Plan</h1>
         <p className="text-muted-foreground">
           Week {appState.weeklyProgression.weekNumber}
           {appState.weeklyProgression.isDeloadWeek && (
@@ -58,13 +58,13 @@ export default function WeekPage() {
       </div>
 
       {/* Weekly Overview */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-4">
         {TRAINING_PLAN.map((workout, idx) => {
           const isToday = idx === today;
           const completion = getDayCompletion(workout.day);
           const totalExercises = workout.sections.reduce(
             (acc, section) => acc + section.exercises.length,
-            0,
+            0
           );
 
           return (
@@ -76,13 +76,13 @@ export default function WeekPage() {
               >
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3 flex-1">
+                    <div className="flex flex-1 items-center gap-3">
                       {/* Day Icon */}
                       <div className="text-2xl">{getTypeIcon(workout.day)}</div>
 
                       {/* Workout Info */}
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="mb-1 flex items-center gap-2">
                           <h3 className="font-semibold capitalize">
                             {workout.day}
                           </h3>
@@ -93,10 +93,10 @@ export default function WeekPage() {
                           )}
                         </div>
                         <p className="text-sm font-medium">{workout.title}</p>
-                        <p className="text-xs text-muted-foreground line-clamp-1">
+                        <p className="text-muted-foreground line-clamp-1 text-xs">
                           {workout.primaryGoal}
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-muted-foreground mt-1 text-xs">
                           {totalExercises} exercises
                         </p>
                       </div>
@@ -105,11 +105,11 @@ export default function WeekPage() {
                     {/* Status */}
                     <div className="flex items-center gap-2">
                       {completion?.completed ? (
-                        <RiCheckboxCircleLine className="h-6 w-6 text-primary" />
+                        <RiCheckboxCircleLine className="text-primary h-6 w-6" />
                       ) : (
-                        <RiCircleLine className="h-6 w-6 text-muted-foreground" />
+                        <RiCircleLine className="text-muted-foreground h-6 w-6" />
                       )}
-                      <RiArrowRightLine className="h-5 w-5 text-muted-foreground" />
+                      <RiArrowRightLine className="text-muted-foreground h-5 w-5" />
                     </div>
                   </div>
                 </CardContent>
@@ -126,16 +126,16 @@ export default function WeekPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-semibold mb-2">Weekly Progression</h4>
-            <ul className="space-y-1 text-sm text-muted-foreground">
+            <h4 className="mb-2 font-semibold">Weekly Progression</h4>
+            <ul className="text-muted-foreground space-y-1 text-sm">
               <li>• Strength: Add 2.5 kg every 1-2 weeks</li>
               <li>• Running: Increase volume by max 10%</li>
               <li>• Deload: Every 4th week (40-50% volume)</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2">Recovery Keys</h4>
-            <ul className="space-y-1 text-sm text-muted-foreground">
+            <h4 className="mb-2 font-semibold">Recovery Keys</h4>
+            <ul className="text-muted-foreground space-y-1 text-sm">
               <li>• Sleep: 7-9 hours</li>
               <li>• Protein: 1.8-2.2 g/kg</li>
               <li>• Daily mobility work</li>

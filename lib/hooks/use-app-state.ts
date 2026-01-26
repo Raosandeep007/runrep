@@ -15,7 +15,7 @@ const APP_STATE_KEY = "fitness-app-state";
 export function useAppState() {
   const [appState, setAppState, isLoading] = useLocalStorage<AppState>(
     APP_STATE_KEY,
-    DEFAULT_APP_STATE,
+    DEFAULT_APP_STATE
   );
 
   // Add exercise log
@@ -31,7 +31,7 @@ export function useAppState() {
         lastSync: new Date().toISOString(),
       }));
     },
-    [setAppState],
+    [setAppState]
   );
 
   // Mark workout as complete
@@ -49,7 +49,7 @@ export function useAppState() {
         lastSync: new Date().toISOString(),
       }));
     },
-    [setAppState],
+    [setAppState]
   );
 
   // Get workout completion for today
@@ -58,11 +58,11 @@ export function useAppState() {
       const today = new Date().toISOString().split("T")[0];
       return (
         appState.workoutCompletions.find(
-          (c) => c.day === day && c.date.startsWith(today),
+          (c) => c.day === day && c.date.startsWith(today)
         ) || null
       );
     },
-    [appState.workoutCompletions],
+    [appState.workoutCompletions]
   );
 
   // Get logs for specific exercise
@@ -71,10 +71,10 @@ export function useAppState() {
       return appState.exerciseLogs
         .filter((log) => log.exerciseId === exerciseId)
         .sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
         );
     },
-    [appState.exerciseLogs],
+    [appState.exerciseLogs]
   );
 
   // Get all strength logs (for charts)

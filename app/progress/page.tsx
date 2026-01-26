@@ -49,7 +49,7 @@ export default function ProgressPage() {
         Math.floor(
           (date.getTime() -
             new Date(appState.weeklyProgression.startDate).getTime()) /
-            (7 * 24 * 60 * 60 * 1000),
+            (7 * 24 * 60 * 60 * 1000)
         ) + 1
       }`;
       weeklyData[weekKey] = (weeklyData[weekKey] || 0) + (log.distance || 0);
@@ -81,34 +81,34 @@ export default function ProgressPage() {
   const currentWeek = appState.weeklyProgression.weekNumber;
 
   return (
-    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-6xl">
+    <div className="container mx-auto max-w-2xl px-4 py-6 md:py-8 lg:max-w-6xl">
       {/* Header */}
       <div className="mb-6 md:mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">Progress</h1>
+        <h1 className="mb-2 text-3xl font-bold md:text-4xl">Progress</h1>
         <p className="text-muted-foreground">Track your training journey</p>
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      <div className="mb-6 grid grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
-            <RiAwardLine className="h-6 w-6 mx-auto mb-2 text-primary" />
+            <RiAwardLine className="text-primary mx-auto mb-2 h-6 w-6" />
             <p className="text-2xl font-bold">{totalWorkouts}</p>
-            <p className="text-xs text-muted-foreground">Workouts</p>
+            <p className="text-muted-foreground text-xs">Workouts</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
-            <RiPulseLine className="h-6 w-6 mx-auto mb-2 text-primary" />
+            <RiPulseLine className="text-primary mx-auto mb-2 h-6 w-6" />
             <p className="text-2xl font-bold">{totalExercises}</p>
-            <p className="text-xs text-muted-foreground">Exercises</p>
+            <p className="text-muted-foreground text-xs">Exercises</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
-            <RiStockLine className="h-6 w-6 mx-auto mb-2 text-primary" />
+            <RiStockLine className="text-primary mx-auto mb-2 h-6 w-6" />
             <p className="text-2xl font-bold">{currentWeek}</p>
-            <p className="text-xs text-muted-foreground">Weeks</p>
+            <p className="text-muted-foreground text-xs">Weeks</p>
           </CardContent>
         </Card>
       </div>
@@ -171,9 +171,9 @@ export default function ProgressPage() {
                   </LineChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="h-[300px] flex items-center justify-center text-muted-foreground">
+                <div className="text-muted-foreground flex h-[300px] items-center justify-center">
                   <div className="text-center">
-                    <RiPulseLine className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                    <RiPulseLine className="mx-auto mb-2 h-12 w-12 opacity-50" />
                     <p>No strength data logged yet</p>
                     <p className="text-sm">
                       Start logging weights to see your progress
@@ -233,9 +233,9 @@ export default function ProgressPage() {
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="h-[300px] flex items-center justify-center text-muted-foreground">
+                <div className="text-muted-foreground flex h-[300px] items-center justify-center">
                   <div className="text-center">
-                    <RiPulseLine className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                    <RiPulseLine className="mx-auto mb-2 h-12 w-12 opacity-50" />
                     <p>No running data logged yet</p>
                     <p className="text-sm">
                       Complete runs to track your volume
@@ -298,9 +298,9 @@ export default function ProgressPage() {
                   </LineChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="h-[300px] flex items-center justify-center text-muted-foreground">
+                <div className="text-muted-foreground flex h-[300px] items-center justify-center">
                   <div className="text-center">
-                    <RiPulseLine className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                    <RiPulseLine className="mx-auto mb-2 h-12 w-12 opacity-50" />
                     <p>No pace data logged yet</p>
                     <p className="text-sm">
                       Log your running pace to see trends
@@ -327,13 +327,13 @@ export default function ProgressPage() {
                 .map((log, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-between py-2 border-b last:border-0"
+                    className="flex items-center justify-between border-b py-2 last:border-0"
                   >
                     <div>
                       <p className="text-sm font-medium">
                         Exercise #{log.exerciseId.slice(-4)}
                       </p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         {new Date(log.date).toLocaleDateString()}
                       </p>
                     </div>

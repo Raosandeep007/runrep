@@ -23,7 +23,7 @@ export default function WorkoutDetailPage() {
   const { addExerciseLog, markWorkoutComplete, getTodayCompletion } =
     useAppState();
   const [completedExercises, setCompletedExercises] = useState<Set<string>>(
-    new Set(),
+    new Set()
   );
   const [exerciseLogs, setExerciseLogs] = useState<
     Record<string, { weight?: number; reps?: number; duration?: number }>
@@ -39,7 +39,7 @@ export default function WorkoutDetailPage() {
 
   if (!workout) {
     return (
-      <div className="container mx-auto px-4 py-6 max-w-2xl">
+      <div className="container mx-auto max-w-2xl px-4 py-6">
         <p>Workout not found</p>
         <Link href="/week">
           <Button variant="outline">Back to Week</Button>
@@ -84,12 +84,12 @@ export default function WorkoutDetailPage() {
 
   const totalExercises = workout.sections.reduce(
     (acc, section) => acc + section.exercises.length,
-    0,
+    0
   );
   const progressPercent = (completedExercises.size / totalExercises) * 100;
 
   return (
-    <div className="container mx-auto px-4 py-6 md:py-8 max-w-2xl lg:max-w-4xl pb-24 md:pb-8">
+    <div className="container mx-auto max-w-2xl px-4 py-6 pb-24 md:py-8 md:pb-8 lg:max-w-4xl">
       {/* Header */}
       <div className="mb-6">
         <Link href="/week">
@@ -99,22 +99,22 @@ export default function WorkoutDetailPage() {
           </Button>
         </Link>
         <h1 className="text-3xl font-bold capitalize">{workout.day}</h1>
-        <p className="text-xl font-semibold mt-1">{workout.title}</p>
+        <p className="mt-1 text-xl font-semibold">{workout.title}</p>
         <p className="text-muted-foreground">{workout.primaryGoal}</p>
       </div>
 
       {/* Progress */}
       <Card className="mb-6">
         <CardContent className="p-4">
-          <div className="flex justify-between items-center mb-2">
+          <div className="mb-2 flex items-center justify-between">
             <span className="text-sm font-medium">Progress</span>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               {completedExercises.size}/{totalExercises}
             </span>
           </div>
-          <div className="h-2 bg-secondary rounded-full overflow-hidden">
+          <div className="bg-secondary h-2 overflow-hidden rounded-full">
             <div
-              className="h-full bg-primary transition-all"
+              className="bg-primary h-full transition-all"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -125,9 +125,9 @@ export default function WorkoutDetailPage() {
       <div className="space-y-6">
         {workout.sections.map((section, sectionIdx) => (
           <div key={sectionIdx}>
-            <h2 className="text-xl font-semibold mb-3">{section.title}</h2>
+            <h2 className="mb-3 text-xl font-semibold">{section.title}</h2>
             {section.description && (
-              <p className="text-sm text-muted-foreground mb-3">
+              <p className="text-muted-foreground mb-3 text-sm">
                 {section.description}
               </p>
             )}
@@ -151,16 +151,16 @@ export default function WorkoutDetailPage() {
                           className="mt-1"
                         >
                           {isCompleted ? (
-                            <RiCheckboxCircleLine className="h-6 w-6 text-primary" />
+                            <RiCheckboxCircleLine className="text-primary h-6 w-6" />
                           ) : (
-                            <RiCircleLine className="h-6 w-6 text-muted-foreground" />
+                            <RiCircleLine className="text-muted-foreground h-6 w-6" />
                           )}
                         </button>
 
                         {/* Exercise Details */}
                         <div className="flex-1">
                           <h3 className="font-semibold">{exercise.name}</h3>
-                          <div className="flex flex-wrap gap-2 mt-2">
+                          <div className="mt-2 flex flex-wrap gap-2">
                             {exercise.sets && (
                               <Badge variant="outline">
                                 {exercise.sets} sets
@@ -186,12 +186,12 @@ export default function WorkoutDetailPage() {
                             )}
                           </div>
                           {exercise.notes && (
-                            <p className="text-sm text-muted-foreground mt-2">
+                            <p className="text-muted-foreground mt-2 text-sm">
                               {exercise.notes}
                             </p>
                           )}
                           {exercise.rest && (
-                            <p className="text-xs text-muted-foreground mt-1">
+                            <p className="text-muted-foreground mt-1 text-xs">
                               Rest: {exercise.rest}
                             </p>
                           )}
@@ -277,10 +277,10 @@ export default function WorkoutDetailPage() {
       </div>
 
       {/* Sticky Complete Button */}
-      <div className="fixed bottom-16 md:bottom-0 left-0 md:left-64 right-0 p-4 bg-background/95 backdrop-blur border-t">
+      <div className="bg-background/95 fixed right-0 bottom-16 left-0 border-t p-4 backdrop-blur md:bottom-0 md:left-64">
         <div className="container mx-auto max-w-2xl lg:max-w-4xl">
           <Button
-            className="w-full h-12 text-base"
+            className="h-12 w-full text-base"
             size="lg"
             onClick={handleCompleteWorkout}
             disabled={completedExercises.size === 0}

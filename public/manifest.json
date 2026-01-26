@@ -5,7 +5,7 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#5B21B6",
+  "theme_color": "#FA7A17",
   "orientation": "portrait",
   "scope": "/",
   "icons": [
@@ -34,7 +34,7 @@
       "purpose": "maskable"
     }
   ],
-  "categories": ["fitness", "health", "lifestyle"],
+  "categories": ["fitness", "health", "lifestyle", "run", "workout", "gym"],
   "screenshots": [],
   "shortcuts": [
     {
