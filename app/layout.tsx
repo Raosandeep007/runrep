@@ -12,7 +12,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "RunRep",
   description: "Advanced Hybrid Training Plan - Strength + Running tracker",
-  generator: "v0.app",
+  generator: "https://raosandeep.vercel.app/",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -37,8 +37,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={jetbrainsMono.variable}>
       <head>
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="antialiased pb-16 md:pb-0">
         <PWAInit />
