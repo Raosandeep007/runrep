@@ -13,12 +13,12 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { useAppState } from "@/lib/hooks/use-app-state";
 import {
-  RiBoxingLine,
   RiCalendarLine,
   RiTrophyLine,
   RiArrowRightLine,
 } from "@remixicon/react";
 import Link from "next/link";
+import Logo from "@/components/logo";
 
 export default function DashboardPage() {
   const todaysWorkout = getTodaysWorkout();
@@ -61,7 +61,7 @@ export default function DashboardPage() {
             <div className="flex items-start justify-between">
               <div>
                 <CardTitle className="flex items-center gap-2 text-2xl">
-                  <RiBoxingLine className="h-6 w-6" />
+                  <Logo className="size-9" />
                   {todaysWorkout.title}
                 </CardTitle>
                 <CardDescription className="mt-2">

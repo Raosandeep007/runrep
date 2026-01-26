@@ -1,19 +1,18 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import {
+  RiCalendarFill,
+  RiCalendarLine,
+  RiHomeFill,
+  RiHomeLine,
+  RiSettingsFill,
+  RiSettingsLine,
+  RiStockFill,
+  RiStockLine,
+} from "@remixicon/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  RiHomeLine,
-  RiCalendarLine,
-  RiStockLine,
-  RiSettingsLine,
-  RiBoxingLine,
-  RiHomeFill,
-  RiCalendarFill,
-  RiStockFill,
-  RiSettingsFill,
-} from "@remixicon/react";
-import { cn } from "@/lib/utils";
 import Logo from "./logo";
 
 const navItems = [
@@ -118,7 +117,11 @@ export function MobileNav() {
                       }
                     )}
                   >
-                    <NavIcon className="h-5 w-5" />
+                    <NavIcon
+                      className={cn("h-5 w-5", {
+                        "fill-primary": isActive,
+                      })}
+                    />
                     <span>{item.label}</span>
                   </Link>
                 );
