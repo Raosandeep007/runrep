@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "RunRep",
+    "slug": "runrep",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "scheme": "runrep",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FA7A17"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.runrep.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FA7A17"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.runrep.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
