@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTheme } from "next-themes";
 import { useAppState } from "@/lib/hooks/use-app-state";
 import {
   Card,
@@ -19,11 +20,15 @@ import {
   RiSettings2Line,
   RiDownloadLine,
   RiInformationLine,
+  RiSunLine,
+  RiMoonLine,
+  RiComputerLine,
 } from "@remixicon/react";
 
 export default function SettingsPage() {
   const { appState, toggleDeloadWeek, incrementWeek, resetAppState } =
     useAppState();
+  const { theme, setTheme } = useTheme();
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleReset = () => {
@@ -42,7 +47,7 @@ export default function SettingsPage() {
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `fitness-tracker-backup-${new Date().toISOString().split("T")[0]}.json`;
+    link.download = `runrep-backup-${new Date().toISOString().split("T")[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -94,6 +99,42 @@ export default function SettingsPage() {
             <span className="text-sm">
               {new Date(appState.lastSync).toLocaleDateString()}
             </span>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Appearance Settings */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Appearance</CardTitle>
+          <CardDescription>Choose your preferred theme</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-3 gap-3">
+            <Button
+              variant={theme === "light" ? "default" : "outline"}
+              className="flex h-auto flex-col items-center gap-2 py-4"
+              onClick={() => setTheme("light")}
+            >
+              <RiSunLine className="h-5 w-5" />
+              <span className="text-sm">Light</span>
+            </Button>
+            <Button
+              variant={theme === "dark" ? "default" : "outline"}
+              className="flex h-auto flex-col items-center gap-2 py-4"
+              onClick={() => setTheme("dark")}
+            >
+              <RiMoonLine className="h-5 w-5" />
+              <span className="text-sm">Dark</span>
+            </Button>
+            <Button
+              variant={theme === "system" ? "default" : "outline"}
+              className="flex h-auto flex-col items-center gap-2 py-4"
+              onClick={() => setTheme("system")}
+            >
+              <RiComputerLine className="h-5 w-5" />
+              <span className="text-sm">System</span>
+            </Button>
           </div>
         </CardContent>
       </Card>

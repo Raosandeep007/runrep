@@ -14,6 +14,7 @@ import {
   RiSettingsFill,
 } from "@remixicon/react";
 import { cn } from "@/lib/utils";
+import Logo from "./logo";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: RiHomeLine, fillicon: RiHomeFill },
@@ -43,7 +44,7 @@ export function MobileNav() {
   return (
     <>
       {/* Mobile Bottom Navigation - Hidden on Desktop */}
-      <nav className="bg-background/95 supports-[backdrop-filter]:bg-background/60 fixed right-0 bottom-0 left-0 z-50 border-t backdrop-blur md:hidden">
+      <nav className="bg-background/95 supports-[backdrop-filter]:bg-background/60 fixed right-0 bottom-0 left-0 z-50 shadow-[0_-2px_16px_rgba(0,0,0,0.1)] backdrop-blur md:hidden dark:shadow-[0_-2px_16px_rgba(0,0,0,0.5)]">
         <div className="flex h-20 items-start justify-around">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -85,11 +86,9 @@ export function MobileNav() {
           {/* Logo/Header */}
           <div className="border-b p-6">
             <div className="flex items-center gap-3">
-              <div className="bg-primary/10 flex h-10 w-10 items-center justify-center rounded-lg">
-                <RiBoxingLine className="text-primary h-6 w-6" />
-              </div>
+              <Logo className="text-primary size-10" />
               <div>
-                <h2 className="text-lg font-bold">Fitness Tracker</h2>
+                <h2 className="text-lg font-bold">RunRep</h2>
                 <p className="text-muted-foreground text-xs">Hybrid Training</p>
               </div>
             </div>

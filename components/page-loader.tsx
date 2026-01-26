@@ -1,23 +1,16 @@
 "use client";
 
-import { RiBoxingLine } from "@remixicon/react";
 import Logo from "./logo";
 
 export function PageLoader() {
   return (
     <div
-      className={`bg-background } fixed inset-0 z-50 flex items-center justify-center opacity-100 transition-opacity duration-500`}
+      className={`bg-background flex h-screen items-center justify-center opacity-100 transition-opacity duration-500`}
     >
       <div className="flex flex-col items-center gap-6">
         {/* App Icon with Animation */}
         <div className="relative">
-          <div className="absolute inset-0 animate-ping">
-            <div className="bg-primary/20 h-24 w-24 rounded-2xl" />
-          </div>
-          <div className="bg-primary animate-bounce-slow relative flex h-24 w-24 items-center justify-center rounded-2xl shadow-2xl">
-            {/* <RiBoxingLine className="text-primary-foreground h-12 w-12" /> */}
-            <Logo />
-          </div>
+          <Logo className="relative flex size-24 items-center justify-center" />
         </div>
 
         {/* App Name */}

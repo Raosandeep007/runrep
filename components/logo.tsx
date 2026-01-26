@@ -1,4 +1,8 @@
-export default function Logo() {
+import React, { SVGProps } from "react";
+
+type Props = SVGProps<SVGSVGElement>;
+
+export default function Logo(props: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -9,6 +13,7 @@ export default function Logo() {
       stroke-width="1px"
       stroke-linecap="round"
       stroke-linejoin="round"
+      {...props}
     >
       <path
         d="M72.7097 12.3072C71.2697 11.7172 69.5799 11.9772 67.6399 13.0972C65.4699 14.3472 63.6198 16.3072 62.0698 18.9672C60.5298 21.6272 59.7598 24.2072 59.7598 26.6872C59.7598 29.1672 60.5298 30.8573 62.0698 31.7373L42.5598 21.9772L42.0698 21.7373C40.5298 20.8573 39.7598 19.1772 39.7598 16.6872C39.7598 14.1972 40.5298 11.6272 42.0698 8.96724C43.6198 6.30724 45.4699 4.34724 47.6399 3.09724C49.7999 1.84724 51.6597 1.66719 53.1997 2.54719L72.7097 12.3072Z"

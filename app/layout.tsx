@@ -1,9 +1,8 @@
-import type { Metadata, Viewport } from "next";
-import "./globals.css";
 import { MobileNav } from "@/components/mobile-nav";
-import { PWAInit } from "@/components/pwa-init";
-import { PageLoader } from "@/components/page-loader";
+import { ThemeProvider } from "@/components/theme-provider";
+import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -36,16 +35,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={jetbrainsMono.variable}>
+    <html lang="en" className={jetbrainsMono.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="pb-16 antialiased md:pb-0">
-        <PageLoader />
-        <PWAInit />
-        <MobileNav />
-        <main className="min-h-screen md:ml-64">{children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MobileNav />
+          <main className="min-h-screen md:ml-64">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
